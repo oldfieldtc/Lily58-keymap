@@ -44,8 +44,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|   [   |    |    ]  |------+------+------+------+------+------|
  * |LShift|   Z  |   X  |   C  |   V  |   B  |-------|    |-------|   N  |   M  |   ,  |   .  |   /  |RShift|
  * `-----------------------------------------/       /     \      \-----------------------------------------'
- *                   |LAlt/⌥|LGUI/⌘|LOWER | /Space  /       \Enter \  |RAISE | Play |RGUI/⌘|
- *                   |      |      |      |/       /         \      \ |      |      |      |
+ *                   |LAlt/⌥|LGUI/⌘|LOWER| /Space /       \Enter \  |RAISE | Play |RGUI/⌘ |
+ *                   |      |      |      |/       /        \      \ |      |      |        |
  *                   `----------------------------'           '------''--------------------'
  */
 
@@ -63,9 +63,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |  F1  |  F2  |  F3  |  F4  |  F5  |  F6  |                    |  F7  |  F8  |  F9  | F10  | F11  | F12  |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |   `  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   -  |
+ * |   `  |   !  |   @  |   #  |   $  |   %  |-------.    ,-------|   ^  |   &  |   *  |   (  |   )  |   ~  |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
- * | Caps |      |      |      |      |      |-------|    |-------|      |   _  |   +  |   {  |   }  |   |  |
+ * | Caps |      |      |      |      |      |-------|    |-------|      |   _  |   +  |   {  |   }  |  |\  |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
  *                   |      |      |LOWER | /       /       \      \  |RAISE |      |      |
  *                   |      |      |      |/       /         \      \ |      |      |      |
@@ -75,7 +75,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   KC_MUTE, KC_VOLD, KC_VOLU, KC_MPLY, KC_MRWD, KC_MFFD,           KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_DEL,
   KC_F1, KC_F2, KC_F3, KC_F4, KC_F5, KC_F6,                       KC_F7, KC_F8, KC_F9, KC_F10, KC_F11, KC_F12,
   KC_GRV, KC_EXLM, KC_AT, KC_HASH, KC_DLR, KC_PERC,               KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_TILD,
-  KC_CAPS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO,   KC_NO, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_PIPE,
+  KC_CAPS, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO,   KC_NO, KC_UNDS, KC_PLUS, KC_LCBR, KC_RCBR, KC_BSLS,
   KC_NO, KC_NO, KC_TRNS, KC_NO,                                   KC_NO, KC_TRNS, KC_NO, KC_NO
 ),
 
