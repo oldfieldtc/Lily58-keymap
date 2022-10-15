@@ -135,10 +135,6 @@ void set_keylog(uint16_t keycode, keyrecord_t *record);
 const char *read_keylog(void);
 const char *read_keylogs(void);
 
-// const char *read_mode_icon(bool swap);
-// const char *read_host_led_state(void);
-// void set_timelog(void);
-// const char *read_timelog(void);
 char wpm_str[10];
 
 bool oled_task_user(void) {
@@ -147,9 +143,7 @@ bool oled_task_user(void) {
     oled_write_ln(read_layer_state(), false);
     oled_write_ln(read_keylog(), false);
     oled_write_ln(read_keylogs(), false);
-    //oled_write_ln(read_mode_icon(keymap_config.swap_lalt_lgui), false);
-    //oled_write_ln(read_host_led_state(), false);
-    // oled_write_ln(read_timelog(), false);
+
     sprintf(wpm_str, "WPM: %03d", get_current_wpm());
     oled_write_ln(wpm_str, false); 
   } else {
@@ -164,7 +158,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 #ifdef OLED_ENABLE
     set_keylog(keycode, record);
 #endif
-    // set_timelog();
+
   }
   return true;
 }
