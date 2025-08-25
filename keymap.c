@@ -2,12 +2,18 @@
 // SPDX-License-Identifier: GPL-2.0-or-later
 
 #include QMK_KEYBOARD_H
+#include "sendstring_uk.h"
 
 enum layer_number {
   _QWERTY = 0,
   _LOWER,
   _RAISE,
   _ADJUST,
+};
+
+enum custom_keycodes {
+  SS_STAEMAIL = SAFE_RANGE,
+  SS_GMAIL
 };
 
 void render_logo(void);
@@ -88,7 +94,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
  * |      |      |      |      |      |      |                    |      |      |      |      |      |      |
  * |------+------+------+------+------+------|                    |------+------+------+------+------+------|
- * |      |      |      |      |      |      |-------.    ,-------|      |      |RGB ON| HUE+ | SAT+ | VAL+ |
+ * |      |      |EMAIL |      |      |GMAIL |-------.    ,-------|      |      |RGB ON| HUE+ | SAT+ | VAL+ |
  * |------+------+------+------+------+------|       |    |       |------+------+------+------+------+------|
  * |      |      |      |      |      |      |-------|    |-------|      |      | MODE | HUE- | SAT- | VAL- |
  * `-----------------------------------------/       /     \      \-----------------------------------------'
@@ -99,7 +105,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   [_ADJUST] = LAYOUT(
     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,
-    KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,                     KC_NO, KC_NO, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,
+    KC_NO, KC_NO, SS_STAEMAIL, KC_NO, KC_NO, SS_GMAIL,            KC_NO, KC_NO, RGB_TOG, RGB_HUI, RGB_SAI, RGB_VAI,
     KC_NO, KC_NO, KC_NO, KC_NO, KC_NO, KC_NO,     KC_NO, KC_NO,   KC_NO, KC_NO, RGB_MOD, RGB_HUD, RGB_SAD, RGB_VAD,
     KC_NO, KC_NO, KC_TRNS, KC_NO,                                 KC_NO, KC_TRNS, KC_NO, KC_NO)
 
@@ -108,6 +114,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 layer_state_t layer_state_set_user(layer_state_t state) {
   return update_tri_layer_state(state, _LOWER, _RAISE, _ADJUST);
 }
+
+
 
 //SSD1306 OLED update loop, make sure to enable OLED_ENABLE=yes in rules.mk
 #ifdef OLED_ENABLE
@@ -141,12 +149,36 @@ bool oled_task_user(void) {
 }
 #endif // OLED_ENABLE
 
+// bool process_record_user(uint16_t keycode, keyrecord_t *record) {
+//   if (record->event.pressed) {
+// #ifdef OLED_ENABLE
+//     set_keylog(keycode, record);
+// #endif
+
+//   }
+//   return true;
+// }
+
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   if (record->event.pressed) {
-#ifdef OLED_ENABLE
-    set_keylog(keycode, record);
-#endif
+    #ifdef OLED_ENABLE
+      set_keylog(keycode, record);
+    #endif
+  }
 
+  switch (keycode) {
+    case SS_STAEMAIL:
+      if (record->event.pressed) {
+        SEND_STRING("@st-andrews.ac.uk");
+      }
+      return false;
+      break;
+    case SS_GMAIL:
+      if (record->event.pressed) {
+        SEND_STRING("@gmail.com");
+      }
+      return false;
+      break;
   }
   return true;
 }
